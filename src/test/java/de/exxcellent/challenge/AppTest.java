@@ -3,6 +3,9 @@ package de.exxcellent.challenge;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -26,6 +29,15 @@ class AppTest {
     @Test
     void runFootball() {
         App.main("--football", "football.csv");
+    }
+
+    @Test
+    void testReader() throws FileNotFoundException {
+        String path = "./src/main/resources/de/exxcellent/challenge";
+        List<WeatherDate> dates = WeatherDateReader.getDates(path + "/weather.csv");
+        for (WeatherDate date : dates) {
+            System.out.println(date.toString());
+        }
     }
 
 }

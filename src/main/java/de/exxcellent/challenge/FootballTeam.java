@@ -2,7 +2,7 @@ package de.exxcellent.challenge;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class FootballTeam extends MinMaxBean{
+public class FootballTeam implements MinMaxBean{
 
 
     @CsvBindByName(column = "Team")

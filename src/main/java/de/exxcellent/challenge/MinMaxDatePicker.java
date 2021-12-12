@@ -4,9 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public class MinMaxDatePicker {
-    private List<MinMaxBean> dates;
-    public MinMaxDatePicker(Class clazz, String filename) throws FileNotFoundException {
-        this.dates = MinMaxDateReader.getMinMaxDates(clazz, filename);
+    private final List<MinMaxBean> dates;
+    public MinMaxDatePicker(List<MinMaxBean> dates) throws FileNotFoundException {
+        this.dates = dates;
     }
 
     public String getDateWithSmallestSpread() {

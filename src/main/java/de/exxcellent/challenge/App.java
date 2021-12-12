@@ -1,6 +1,7 @@
 package de.exxcellent.challenge;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -21,12 +22,12 @@ public final class App {
         String weatherFilename = "";
         String footballFileName = "";
         for (int i = 0; i < args.length; ++i) {
-            if (args[i] == "--weather") {
+            if (args[i].equals("--weather")) {
                 if (i + 1 < args.length) {
                     weatherFilename = args[i+1];
                 }
             }
-            if (args[i] == "--football") {
+            if (args[i].equals("--football")) {
                 if (i + 1 < args.length) {
                     footballFileName = args[i+1];
                 }
@@ -39,13 +40,15 @@ public final class App {
 
         try {
             if (!weatherFilename.isEmpty()) {
-                MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(WeatherDate.class, resourcePath + weatherFilename);
+                var weatherDates = MinMaxDateCsvReader.getMinMaxDates(WeatherDate.class, resourcePath + weatherFilename);
+                MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(weatherDates);
                 String dayWithSmallestTempSpread = weatherDatePicker.getDateWithSmallestSpread();     // Your day analysis function call …
                 System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
             }
 
             if (!footballFileName.isEmpty()) {
-                MinMaxDatePicker footballTeamPicker = new MinMaxDatePicker(FootballTeam.class, resourcePath + footballFileName);
+                var footbalTeamDates = MinMaxDateCsvReader.getMinMaxDates(FootballTeam.class, resourcePath + footballFileName);
+                MinMaxDatePicker footballTeamPicker = new MinMaxDatePicker(footbalTeamDates);
                 String teamWithSmallestGoalSpread = footballTeamPicker.getDateWithSmallestSpread(); // Your goal analysis function call …
                 System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
             }

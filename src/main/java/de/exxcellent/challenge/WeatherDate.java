@@ -2,7 +2,7 @@ package de.exxcellent.challenge;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class WeatherDate extends MinMaxBean {
+public class WeatherDate implements MinMaxBean {
     @CsvBindByName(column = "Day")
     private String day;
 

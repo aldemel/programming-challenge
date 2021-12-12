@@ -6,13 +6,12 @@ import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 
-public class MinMaxDateReader {
+public class MinMaxDateCsvReader {
 
     static List<MinMaxBean> getMinMaxDates(Class clazz, String filename) throws FileNotFoundException {
-        List<MinMaxBean> beans = new CsvToBeanBuilder(new FileReader(filename))
+        return new CsvToBeanBuilder(new FileReader(filename))
                 .withType(clazz)
                 .build()
                 .parse();
-        return beans;
     }
 }

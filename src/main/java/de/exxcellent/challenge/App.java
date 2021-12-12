@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,14 +35,26 @@ public final class App {
             }
         }
 
-        if (!weatherFilename.isEmpty()) {
-            WeatherDatePicker weatherDatePicker = new WeatherDatePicker(resourcePath + weatherFilename);
-            String dayWithSmallestTempSpread = weatherDatePicker.getDateWithSmallestTemperatureSpread();     // Your day analysis function call …
-            System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+        if (weatherFilename.isEmpty() && footballFileName.isEmpty()) {
+            System.out.println("No files set.");
         }
 
+        try {
+            if (!weatherFilename.isEmpty()) {
+                WeatherDatePicker weatherDatePicker = new WeatherDatePicker(resourcePath + weatherFilename);
+                String dayWithSmallestTempSpread = weatherDatePicker.getDateWithSmallestTemperatureSpread();     // Your day analysis function call …
+                System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+            }
 
-        String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
-        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+            if (!footballFileName.isEmpty()) {
+                String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
+                System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+            }
+        }
+        catch (FileNotFoundException ex)
+        {
+            ex.printStackTrace();
+        }
+
     }
 }

@@ -39,8 +39,8 @@ class AppTest {
     @Test
     void testReader() throws FileNotFoundException {
         String filename = "./src/main/resources/de/exxcellent/challenge/weather.csv";
-        List<WeatherDate> dates = MinMaxDateReader.getWeatherDates(filename);
-        for (WeatherDate date : dates) {
+        List<MinMaxBean> dates = MinMaxDateReader.getMinMaxDates(WeatherDate.class, filename);
+        for (MinMaxBean date : dates) {
             System.out.println(date.toString());
         }
     }
@@ -48,8 +48,8 @@ class AppTest {
     @Test
     void testWeatherDatePicker() throws FileNotFoundException {
         String filename = "./src/main/resources/de/exxcellent/challenge/weather.csv";
-        WeatherDatePicker weatherDatePicker = new WeatherDatePicker(filename);
-        assertEquals("14", weatherDatePicker.getDateWithSmallestTemperatureSpread());
+        MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(WeatherDate.class, filename);
+        assertEquals("14", weatherDatePicker.getDateWithSmallestSpread());
     }
 
 }

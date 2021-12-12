@@ -1,8 +1,6 @@
 package de.exxcellent.challenge;
 
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -41,8 +39,8 @@ public final class App {
 
         try {
             if (!weatherFilename.isEmpty()) {
-                WeatherDatePicker weatherDatePicker = new WeatherDatePicker(resourcePath + weatherFilename);
-                String dayWithSmallestTempSpread = weatherDatePicker.getDateWithSmallestTemperatureSpread();     // Your day analysis function call …
+                MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(WeatherDate.class, resourcePath + weatherFilename);
+                String dayWithSmallestTempSpread = weatherDatePicker.getDateWithSmallestSpread();     // Your day analysis function call …
                 System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
             }
 

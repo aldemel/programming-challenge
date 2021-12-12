@@ -2,7 +2,7 @@ package de.exxcellent.challenge;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class WeatherDate {
+public class WeatherDate extends MinMaxBean {
     @CsvBindByName(column = "Day")
     private String day;
 
@@ -15,6 +15,14 @@ public class WeatherDate {
     public WeatherDate() {
 
     }
+    @Override
+    public int getSpread() {
+        return maxTemp - minTemp;
+    }
+    @Override
+    public String getLineKey() {
+        return getDay();
+    }
 
     @Override
     public String toString() {
@@ -23,14 +31,6 @@ public class WeatherDate {
                 ", maxTemp=" + maxTemp +
                 ", minTemp=" + minTemp +
                 '}';
-    }
-
-    public int getMaxTemp() {
-        return maxTemp;
-    }
-
-    public int getMinTemp() {
-        return minTemp;
     }
 
     public String getDay() {

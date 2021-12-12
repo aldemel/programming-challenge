@@ -21,7 +21,7 @@ public class WeatherDate extends MinMaxBean {
     }
     @Override
     public String getLineKey() {
-        return getDay();
+        return day;
     }
 
     @Override
@@ -31,9 +31,5 @@ public class WeatherDate extends MinMaxBean {
                 ", maxTemp=" + maxTemp +
                 ", minTemp=" + minTemp +
                 '}';
-    }
-
-    public String getDay() {
-        return day;
     }
 }

@@ -45,7 +45,8 @@ public final class App {
             }
 
             if (!footballFileName.isEmpty()) {
-                String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
+                MinMaxDatePicker footballTeamPicker = new MinMaxDatePicker(FootballTeam.class, resourcePath + footballFileName);
+                String teamWithSmallestGoalSpread = footballTeamPicker.getDateWithSmallestSpread(); // Your goal analysis function call …
                 System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
             }
         }

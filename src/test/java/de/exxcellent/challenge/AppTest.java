@@ -32,12 +32,24 @@ class AppTest {
     }
 
     @Test
-    void testReader() throws FileNotFoundException {
-        String path = "./src/main/resources/de/exxcellent/challenge";
-        List<WeatherDate> dates = WeatherDateReader.getDates(path + "/weather.csv");
+    void runWeather() {
+        App.main("--weather", "weather.csv");
+    }
+
+    @Test
+    void testReader() {
+        String filename = "./src/main/resources/de/exxcellent/challenge/weather.csv";
+        List<WeatherDate> dates = WeatherDateReader.getWeatherDates(filename);
         for (WeatherDate date : dates) {
             System.out.println(date.toString());
         }
+    }
+
+    @Test
+    void testWeatherDatePicker() {
+        String filename = "./src/main/resources/de/exxcellent/challenge/weather.csv";
+        WeatherDatePicker weatherDatePicker = new WeatherDatePicker(filename);
+        assertEquals("14", weatherDatePicker.getDateWithSmallestTemperatureSpread());
     }
 
 }

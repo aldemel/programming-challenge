@@ -5,10 +5,15 @@ public class WeatherDate {
     int maxTemp;
     int minTemp;
 
-    public WeatherDate(String day, int maxTemp, int minTemp) {
-        this.day = day;
-        this.maxTemp = maxTemp;
-        this. minTemp = minTemp;
+    public WeatherDate(String day, String maxTemp, String minTemp) {
+        try{
+            this.day = day;
+            this.maxTemp = Integer.parseInt(maxTemp);
+            this.minTemp = Integer.parseInt(minTemp);
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override

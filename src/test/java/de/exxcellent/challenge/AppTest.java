@@ -2,6 +2,8 @@ package de.exxcellent.challenge;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -34,6 +36,21 @@ class AppTest {
     }
 
     @Test
+    void runBoth() {
+        App.main("--football", "football.csv", "--weather", "weather.csv");
+    }
+
+    @Test
+    void noFile() {
+        App.main("--weather", "nofile.csv");
+    }
+
+    @Test
+    void runSomethingElse() {
+        App.main("--noarg");
+    }
+
+    @Test
     void testReaderForWeatherFile() {
         String filename = "./src/main/resources/de/exxcellent/challenge/weather.csv";
         List<MinMaxBean> dates = MinMaxDateCsvReader.getMinMaxDates(WeatherDate.class, filename);
@@ -49,6 +66,25 @@ class AppTest {
         List<MinMaxBean> dates = MinMaxDateCsvReader.getMinMaxDates(WeatherDate.class, filename);
         MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(dates);
         assertEquals("14", weatherDatePicker.getDateWithSmallestSpread());
+    }
+
+
+
+    @Test
+    void testWeatherDatePicker_corrupted() {
+        String filename = "./src/main/resources/de/exxcellent/challenge/weather_corrupted.csv";
+        List<MinMaxBean> dates = MinMaxDateCsvReader.getMinMaxDates(WeatherDate.class, filename);
+        assertEquals(28, dates.size());
+        MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(dates);
+        assertEquals("15", weatherDatePicker.getDateWithSmallestSpread());
+    }
+
+    @Test
+    void testWeatherDatePicker_emptyDateList() {
+        String filename = "./src/main/resources/de/exxcellent/challenge/weather_corrupted.csv";
+        List<MinMaxBean> dates = new ArrayList<>();
+        MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(dates);
+        assertEquals("", weatherDatePicker.getDateWithSmallestSpread());
     }
 
     @Test

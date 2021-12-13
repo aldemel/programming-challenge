@@ -35,7 +35,7 @@ public final class App {
         }
 
         if (weatherFilename.isEmpty() && footballFileName.isEmpty()) {
-            System.out.println("No files set.");
+            System.out.println("There was no input provided.");
         }
 
         if (!weatherFilename.isEmpty()) {

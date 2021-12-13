@@ -10,6 +10,10 @@ public class MinMaxDatePicker {
     }
 
     public String getDateWithSmallestSpread() {
+        if (dates.isEmpty()) {
+            System.out.println("No dates to pick from.");
+            return "";
+        }
         int smallestSpread = dates.get(0).getSpread();
         String dateWithSmallestSpread = dates.get(0).getLineKey();
         for (MinMaxBean date : dates) {

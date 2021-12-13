@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MinMaxDatePicker {
     private final List<MinMaxBean> dates;
-    public MinMaxDatePicker(List<MinMaxBean> dates) throws FileNotFoundException {
+    public MinMaxDatePicker(List<MinMaxBean> dates) {
         this.dates = dates;
     }
 

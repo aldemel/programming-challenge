@@ -38,24 +38,18 @@ public final class App {
             System.out.println("No files set.");
         }
 
-        try {
-            if (!weatherFilename.isEmpty()) {
-                var weatherDates = MinMaxDateCsvReader.getMinMaxDates(WeatherDate.class, resourcePath + weatherFilename);
-                MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(weatherDates);
-                String dayWithSmallestTempSpread = weatherDatePicker.getDateWithSmallestSpread();     // Your day analysis function call …
-                System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
-            }
-
-            if (!footballFileName.isEmpty()) {
-                var footbalTeamDates = MinMaxDateCsvReader.getMinMaxDates(FootballTeam.class, resourcePath + footballFileName);
-                MinMaxDatePicker footballTeamPicker = new MinMaxDatePicker(footbalTeamDates);
-                String teamWithSmallestGoalSpread = footballTeamPicker.getDateWithSmallestSpread(); // Your goal analysis function call …
-                System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
-            }
+        if (!weatherFilename.isEmpty()) {
+            var weatherDates = MinMaxDateCsvReader.getMinMaxDates(WeatherDate.class, resourcePath + weatherFilename);
+            MinMaxDatePicker weatherDatePicker = new MinMaxDatePicker(weatherDates);
+            String dayWithSmallestTempSpread = weatherDatePicker.getDateWithSmallestSpread();     // Your day analysis function call …
+            System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
         }
-        catch (FileNotFoundException ex)
-        {
-            ex.printStackTrace();
+
+        if (!footballFileName.isEmpty()) {
+            var footbalTeamDates = MinMaxDateCsvReader.getMinMaxDates(FootballTeam.class, resourcePath + footballFileName);
+            MinMaxDatePicker footballTeamPicker = new MinMaxDatePicker(footbalTeamDates);
+            String teamWithSmallestGoalSpread = footballTeamPicker.getDateWithSmallestSpread(); // Your goal analysis function call …
+            System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
         }
 
     }
